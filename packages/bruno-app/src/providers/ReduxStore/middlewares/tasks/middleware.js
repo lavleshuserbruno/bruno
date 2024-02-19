@@ -2,7 +2,7 @@ import get from 'lodash/get';
 import each from 'lodash/each';
 import filter from 'lodash/filter';
 import { createListenerMiddleware } from '@reduxjs/toolkit';
-import { removeTaskFromQueue, hideHomePage } from 'providers/ReduxStore/slices/app';
+import { removeTaskFromQueue, hideHomePage, hideDevtoolsPage } from 'providers/ReduxStore/slices/app';
 import { addTab } from 'providers/ReduxStore/slices/tabs';
 import { collectionAddFileEvent } from 'providers/ReduxStore/slices/collections';
 import { findCollectionByUid, findItemInCollectionByPathname, getDefaultRequestPaneTab } from 'utils/collections/index';
@@ -37,6 +37,7 @@ taskMiddleware.startListening({
             })
           );
           listenerApi.dispatch(hideHomePage());
+          listenerApi.dispatch(hideDevtoolsPage());
           listenerApi.dispatch(
             removeTaskFromQueue({
               taskUid: task.uid

@@ -8,7 +8,7 @@ import ImportCollectionLocation from 'components/Sidebar/ImportCollectionLocatio
 import { IconDots } from '@tabler/icons';
 import { useState, forwardRef, useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import { showHomePage } from 'providers/ReduxStore/slices/app';
+import { showHomePage, showDevtoolsPage } from 'providers/ReduxStore/slices/app';
 import { openCollection, importCollection } from 'providers/ReduxStore/slices/collections/actions';
 import StyledWrapper from './StyledWrapper';
 
@@ -44,6 +44,8 @@ const TitleBar = () => {
   });
 
   const handleTitleClick = () => dispatch(showHomePage());
+
+  const handleDevtoolsJSONClick = () => dispatch(showDevtoolsPage());
 
   const handleOpenCollection = () => {
     dispatch(openCollection()).catch(
@@ -117,6 +119,15 @@ const TitleBar = () => {
               }}
             >
               Devtools
+            </div>
+            <div
+              className="dropdown-item"
+              onClick={(e) => {
+                menuDropdownTippyRef.current.hide();
+                handleDevtoolsJSONClick();
+              }}
+            >
+              Devtools JSON
             </div>
           </Dropdown>
         </div>

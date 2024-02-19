@@ -21,7 +21,7 @@ import GenerateCodeItem from './GenerateCodeItem';
 import { isItemARequest, isItemAFolder, itemIsOpenedInTabs } from 'utils/tabs';
 import { doesRequestMatchSearchText, doesFolderHaveItemsMatchSearchText } from 'utils/collections/search';
 import { getDefaultRequestPaneTab } from 'utils/collections';
-import { hideHomePage } from 'providers/ReduxStore/slices/app';
+import { hideHomePage, hideDevtoolsPage } from 'providers/ReduxStore/slices/app';
 import toast from 'react-hot-toast';
 import StyledWrapper from './StyledWrapper';
 import NetworkError from 'components/ResponsePane/NetworkError/index';
@@ -111,6 +111,8 @@ const CollectionItem = ({ item, collection, searchText }) => {
 
     if (isItemARequest(item)) {
       dispatch(hideHomePage());
+      dispatch(hideDevtoolsPage());
+
       if (itemIsOpenedInTabs(item, tabs)) {
         dispatch(
           focusTab({

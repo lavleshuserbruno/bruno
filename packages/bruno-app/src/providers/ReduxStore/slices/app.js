@@ -8,6 +8,7 @@ const initialState = {
   leftSidebarWidth: 222,
   screenWidth: 500,
   showHomePage: false,
+  showDevtoolsPage: false,
   showPreferences: false,
   isEnvironmentSettingsModalOpen: false,
   getActiveEnvironment: [],
@@ -50,13 +51,20 @@ export const appSlice = createSlice({
     updateActiveEnvironmentSettings: (state, action) => {
       state.getActiveEnvironment = action.payload;
     },
-    
+
     showHomePage: (state) => {
       state.showHomePage = true;
     },
     hideHomePage: (state) => {
       state.showHomePage = false;
     },
+    showDevtoolsPage: (state) => {
+      state.showDevtoolsPage = true;
+    },
+    hideDevtoolsPage: (state) => {
+      state.showDevtoolsPage = false;
+    },
+
     showPreferences: (state, action) => {
       state.showPreferences = action.payload;
     },
@@ -87,6 +95,8 @@ export const {
   updateActiveEnvironmentSettings,
   showHomePage,
   hideHomePage,
+  showDevtoolsPage,
+  hideDevtoolsPage,
   showPreferences,
   updatePreferences,
   updateCookies,

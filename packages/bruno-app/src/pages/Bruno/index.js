@@ -1,6 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import Welcome from 'components/Welcome';
+import DevtoolsPage from 'components/DevtoolsPage';
 import RequestTabs from 'components/RequestTabs';
 import RequestTabPanel from 'components/RequestTabPanel';
 import Sidebar from 'components/Sidebar';
@@ -47,6 +48,7 @@ export default function Main() {
   const activeTabUid = useSelector((state) => state.tabs.activeTabUid);
   const isDragging = useSelector((state) => state.app.isDragging);
   const showHomePage = useSelector((state) => state.app.showHomePage);
+  const showDevtoolsPage = useSelector((state) => state.app.showDevtoolsPage);
 
   // Todo: write a better logging flow that can be used to log by turning on debug flag
   // Enable for debugging.
@@ -65,8 +67,14 @@ export default function Main() {
             <Welcome />
           ) : (
             <>
-              <RequestTabs />
-              <RequestTabPanel key={activeTabUid} />
+              {showDevtoolsPage ? (
+                <DevtoolsPage />
+              ) : (
+                <>
+                  <RequestTabs />
+                  <RequestTabPanel key={activeTabUid} />
+                </>
+              )}
             </>
           )}
         </section>
